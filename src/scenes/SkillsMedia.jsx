@@ -4,7 +4,7 @@ import React from "react";
 const SkillsMedia = () => {
   return (
     <div className="flex flex-wrap border-4  border-blue hover:border-cyan-600 rounded-lg pr-3 w-full mt-10 h-[100%] justify-around items-center">
-      <div className="w-[120px] h-[120px] sm:w-60 sm:h-60 flex justify-center items-center rounded-md bg-gradient-to-t from-react border-react  border-b-4 m-2 hover:saturate-200">
+      <div className="w-[100px] h-[100px] sm:w-60 sm:h-60 flex justify-center items-center rounded-md bg-gradient-to-t from-react border-react  border-b-4 m-2 hover:saturate-200">
         <img className="w-5/6 h-5/6 " 
         src="../assets/react-2.svg" 
         alt="react" />
