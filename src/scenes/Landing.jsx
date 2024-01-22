@@ -3,8 +3,9 @@ import useMediaQuery from "../hooks/useMediaQuery";
 import { motion } from "framer-motion";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import SocialMediaIcons from "../components/SocialMediaIcons";
+import Example from "../components/BubbleText";
 
-const Landing = ({setSelectedPage}) => {
+const Landing = ({ setSelectedPage }) => {
   const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
   return (
     <section
@@ -26,8 +27,7 @@ const Landing = ({setSelectedPage}) => {
             />
           </div>
         ) : (
-            
-            <div
+          <div
             className="relative z-0 ml-18 before:absolute before:-top-10 before:-left-10 before:rounded-t-[400px]
                 before:w-full before:max-w-[400px] before:h-full before:border-2 before:border-blue before:z-[-1]"
           >
@@ -53,7 +53,7 @@ const Landing = ({setSelectedPage}) => {
           }}
         >
           <p className="text-4xl font-playfair z-10 text-center md:text-start">
-            Anurag {""}
+            <Example text="Anurag" /> {""}
             <span
               className="xs:relative xs:text-deep-blue xs:font-semibold z-20 xs:before:content-brush
               before:absolute before:-left-[25px] before:-top-[90px] before:z-[-1]"
@@ -89,18 +89,23 @@ const Landing = ({setSelectedPage}) => {
             Contact Me
           </AnchorLink>
 
-          <AnchorLink
+          <a
             className="rounded-r-sm bg-gradient-rainblue py-0.5 pr-0.5"
-            onClick={() => setSelectedPage("contact")}
-            href="#contact"
+            // onClick={() => setSelectedPage("contact")}
+            href="https://drive.google.com/file/d/1mUAb6CvwzocODW9_vcva9SRNU1R9xHVA/view?usp=drive_link"
+            download
+            target="_blank"
+            rel="noreferrer"
           >
             <div
               className="bg-deep-blue hover:text-blue transition duration-500 w-full h-full flex items-center
-                    justify-center font-playfair px-10"
+                    justify-center font-playfair  px-10"
             >
-              Let's talk.
+              Resume
+              <img src="./assets/arrow.svg" alt="arrow" className=" ml-[5px] mt-[2px] h-4 w-4" />
             </div>
-          </AnchorLink>
+
+          </a>
         </motion.div>
 
         <motion.div

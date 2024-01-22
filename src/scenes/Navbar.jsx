@@ -69,7 +69,7 @@ const Navbar = ({isTopOfPage , selectedPage, setSelectedPage }) => {
         )}
 
         {!isAboveSmallScreens && isMenuToggled && (
-          <div className="fixed right-0 bottom-0 h-full bg-gradient-rainblue  w-3/5">
+          <div className="fixed right-0 bottom-0 h-full bg-gradient-rainblue  w-1/2">
             {/* close icon */}
             <div className="flex justify-end p-12">
               <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
