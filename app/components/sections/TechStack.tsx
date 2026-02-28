@@ -43,45 +43,6 @@ export default function TechStack() {
             <TechCard key={skill.name} skill={skill} />
           ))}
         </div>
-
-        {/* GitHub Stats Section */}
-        <div className="mt-12 pt-8 border-t border-terminal-border">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="text-amber-400 text-sm sm:text-base font-mono uppercase tracking-wider border border-amber-400/50 px-3 py-1 rounded">
-              Open Source
-            </div>
-            <span className="text-gray-400 font-mono text-sm">
-              github.com/anurag46-code
-            </span>
-          </div>
-
-          <div className="grid grid-cols-3 gap-4 max-w-2xl">
-            <div className="text-center p-4 border border-terminal-border rounded-lg bg-terminal-bg/50">
-              <div className="text-2xl sm:text-3xl font-mono text-terminal-glow mb-1">
-                40+
-              </div>
-              <div className="text-xs sm:text-sm text-gray-400 font-mono">
-                Repositories
-              </div>
-            </div>
-            <div className="text-center p-4 border border-terminal-border rounded-lg bg-terminal-bg/50">
-              <div className="text-2xl sm:text-3xl font-mono text-terminal-glow mb-1">
-                500+
-              </div>
-              <div className="text-xs sm:text-sm text-gray-400 font-mono">
-                Stars
-              </div>
-            </div>
-            <div className="text-center p-4 border border-terminal-border rounded-lg bg-terminal-bg/50">
-              <div className="text-2xl sm:text-3xl font-mono text-terminal-glow mb-1">
-                1k+
-              </div>
-              <div className="text-xs sm:text-sm text-gray-400 font-mono">
-                Contributions
-              </div>
-            </div>
-          </div>
-        </div>
       </motion.div>
     </Section>
   );

@@ -13,12 +13,14 @@ export default function Home() {
     <div className="relative">
       <CRTGlow intensity="low" className="min-h-screen">
         <TerminalWindow>
-          <Hero />
-          <CPStats />
-          <DSA />
-          <Experience />
-          <TechStack />
-          <ContactForm />
+          <div className="pt-16"> {/* Add padding for fixed nav */}
+            <Hero />
+            <CPStats />
+            <DSA />
+            <Experience />
+            <TechStack />
+            <ContactForm />
+          </div>
         </TerminalWindow>
       </CRTGlow>
       <Scanlines />
