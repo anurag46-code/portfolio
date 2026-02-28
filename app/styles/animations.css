@@ -1,0 +1,102 @@
+/* Scanline Movement */
+@keyframes scanline-move {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* Cursor Blink */
+@keyframes cursor-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Text Flicker */
+@keyframes text-flicker {
+  0% {
+    opacity: 0.97;
+  }
+  5% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 0.98;
+  }
+  15% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0.96;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Glow Pulse */
+@keyframes glow-pulse {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.1);
+  }
+}
+
+/* Fade In Up */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Utility classes using the keyframes */
+.animate-scanline-move {
+  animation: scanline-move 8s linear infinite;
+}
+
+.animate-cursor-blink {
+  animation: cursor-blink 0.8s step-end infinite;
+}
+
+.animate-text-flicker {
+  animation: text-flicker 4s linear infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.5s ease-out forwards;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .animate-scanline-move,
+  .animate-cursor-blink,
+  .animate-text-flicker,
+  .animate-glow-pulse,
+  .animate-fade-in-up {
+    animation: none;
+  }
+
+  .animate-fade-in-up {
+    opacity: 1;
+    transform: none;
+  }
+}

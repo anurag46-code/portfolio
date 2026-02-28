@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    @apply bg-terminal-bg text-terminal-text font-mono;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: unset;
+  }
+
+  /* Custom scrollbar for terminal aesthetic */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #000000;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #00FF0044;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #00FF0088;
+  }
+
+  /* Firefox scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #00FF0044 #000000;
+  }
+
+  /* Selection color */
+  ::selection {
+    background: #00FF0033;
+    color: #00FF00;
+  }
+
+  /* Visible focus ring for keyboard navigation */
+  :focus-visible {
+    outline: 2px solid #00FF0099;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .terminal-window {
+    @apply bg-terminal-bg border border-terminal-border rounded-md shadow-border-glow;
+  }
+
+  .terminal-header {
+    @apply flex items-center gap-2 px-4 py-2 border-b border-terminal-border;
+  }
+
+  .terminal-dot {
+    @apply w-3 h-3 rounded-full;
+  }
+
+  .terminal-prompt {
+    @apply text-terminal-text;
+  }
+
+  .terminal-prompt::before {
+    content: "$ ";
+    @apply text-terminal-glow;
+  }
+
+  .glow-text {
+    text-shadow: 0 0 5px #00FF0099, 0 0 10px #00FF0066;
+  }
+
+  /* Skip to content link for keyboard navigation */
+  .skip-to-content {
+    @apply absolute -top-10 left-4 z-50 px-4 py-2 bg-terminal-bg text-terminal-glow border border-terminal-glow rounded text-sm font-mono;
+    transition: top 0.2s;
+  }
+
+  .skip-to-content:focus {
+    top: 4px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

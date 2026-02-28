@@ -1,0 +1,107 @@
+/* CRT Glow Effects */
+.crt-glow {
+  box-shadow:
+    0 0 10px #00ff0066,
+    0 0 20px #00ff0033,
+    0 0 40px #00ff0011,
+    inset 0 0 10px #00ff0022;
+}
+
+.crt-glow-intense {
+  box-shadow:
+    0 0 15px #00ff0088,
+    0 0 30px #00ff0055,
+    0 0 60px #00ff0022,
+    0 0 100px #00ff0011,
+    inset 0 0 20px #00ff0033;
+}
+
+.crt-glow-subtle {
+  box-shadow:
+    0 0 5px #00ff0033,
+    0 0 10px #00ff0011,
+    inset 0 0 5px #00ff0011;
+}
+
+/* Text Glow Effects */
+.text-glow {
+  text-shadow:
+    0 0 5px #00ff0099,
+    0 0 10px #00ff0066;
+}
+
+.text-glow-strong {
+  text-shadow:
+    0 0 7px #00ff00cc,
+    0 0 15px #00ff0088,
+    0 0 30px #00ff0044;
+}
+
+.text-glow-amber {
+  text-shadow:
+    0 0 5px #ffb00099,
+    0 0 10px #ffb00066;
+}
+
+/* CRT Screen Effect */
+.crt-screen {
+  position: relative;
+  overflow: hidden;
+}
+
+.crt-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.05) 2px,
+    rgba(0, 0, 0, 0.05) 4px
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Terminal Flicker */
+.terminal-flicker {
+  animation: flicker 0.15s infinite;
+}
+
+/* Reduce motion for accessibility and mobile performance */
+@media (prefers-reduced-motion: reduce) {
+  .terminal-flicker {
+    animation: none;
+  }
+
+  .crt-screen::before {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .crt-glow {
+    box-shadow:
+      0 0 5px #00ff0044,
+      0 0 10px #00ff0022;
+  }
+
+  .crt-glow-intense {
+    box-shadow:
+      0 0 8px #00ff0066,
+      0 0 15px #00ff0033;
+  }
+
+  .text-glow-strong {
+    text-shadow:
+      0 0 5px #00ff0099,
+      0 0 10px #00ff0066;
+  }
+
+  .crt-glow-subtle {
+    box-shadow:
+      0 0 3px #00ff0022,
+      0 0 6px #00ff0011;
+  }
+}
