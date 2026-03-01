@@ -1,5 +1,6 @@
 import TerminalWindow from "@/app/components/layout/TerminalWindow";
 import Scanlines from "@/app/components/effects/Scanlines";
+import CursorTrail from "@/app/components/effects/CursorTrail";
 import CRTGlow from "@/app/components/effects/CRTGlow";
 import Hero from "@/app/components/sections/Hero";
 import CPStats from "@/app/components/sections/CPStats";
@@ -24,6 +25,7 @@ export default function Home() {
         </TerminalWindow>
       </CRTGlow>
       <Scanlines />
+      <CursorTrail />
     </div>
   );
 }

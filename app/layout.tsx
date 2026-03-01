@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import "./styles/effects.css";
 import "./styles/animations.css";
+import ColorTemperature from "@/app/components/effects/ColorTemperature";
 
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
@@ -29,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistMono.variable} font-mono antialiased`}>
+        <ColorTemperature />
         <a href="#about" className="skip-to-content">
           Skip to content
         </a>

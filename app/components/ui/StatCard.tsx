@@ -1,8 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { motion, useInView } from "framer-motion";
+import { useRef, useState } from "react";
 import { getCpPlatformIcon } from "@/app/lib/icon-mappings";
+import useCountUp from "@/app/hooks/useCountUp";
+import use3DTilt from "@/app/hooks/use3DTilt";
 
 interface StatCardProps {
   platform: string;
@@ -11,15 +13,74 @@ interface StatCardProps {
   rank: string;
 }
 
+/**
+ * Extracts the leading integer and any trailing suffix from a string.
+ * Returns null if the string doesn't start with a digit.
+ *
+ * Examples:
+ *   "1440"   -> { num: 1440, suffix: "" }
+ *   "1800+"  -> { num: 1800, suffix: "+" }
+ *   "500+"   -> { num: 500, suffix: "+" }
+ *   "Knight" -> null
+ *   "4-star" -> { num: 4, suffix: "-star" }
+ */
+function parseNumericValue(value: string): { num: number; suffix: string } | null {
+  const match = value.match(/^(\d+)(.*)/);
+  if (!match) return null;
+  return { num: parseInt(match[1], 10), suffix: match[2] };
+}
+
+function AnimatedValue({
+  value,
+  inView,
+}: {
+  value: string;
+  inView: boolean;
+}) {
+  const parsed = parseNumericValue(value);
+
+  if (!parsed) {
+    // Non-numeric value (e.g. "Specialist") -- render as-is
+    return <span className="text-gray-300">{value}</span>;
+  }
+
+  return <CountUpValue end={parsed.num} suffix={parsed.suffix} inView={inView} />;
+}
+
+function CountUpValue({
+  end,
+  suffix,
+  inView,
+}: {
+  end: number;
+  suffix: string;
+  inView: boolean;
+}) {
+  const count = useCountUp(end, 1500, inView);
+  return (
+    <span className="text-gray-300 tabular-nums">
+      {count}
+      {suffix}
+    </span>
+  );
+}
+
 export default function StatCard({ platform, rating, solved, rank }: StatCardProps) {
   const iconUrl = getCpPlatformIcon(platform);
   const [imageError, setImageError] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(cardRef, { once: true, amount: 0.5 });
+  const tilt = use3DTilt(cardRef);
 
   return (
     <motion.div
-      className="border border-terminal-border rounded-md p-4 sm:p-5 bg-terminal-bg/50 transition-all duration-300"
+      ref={cardRef}
+      className="relative border border-terminal-border rounded-md p-4 sm:p-5 bg-terminal-bg/50 transition-all duration-300"
       style={{
         boxShadow: "0 0 5px #00ff0033, 0 0 10px #00ff0011, inset 0 0 5px #00ff0011",
+        transformStyle: "preserve-3d",
+        transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
+        transition: "transform 0.15s ease-out",
       }}
       whileHover={{
         scale: 1.02,
@@ -50,15 +111,15 @@ export default function StatCard({ platform, rating, solved, rank }: StatCardPro
       <div className="space-y-2 text-xs sm:text-sm font-mono">
         <div className="flex justify-between">
           <span className="text-gray-400">rating:</span>
-          <span className="text-gray-300">{rating}</span>
+          <AnimatedValue value={rating} inView={isInView} />
         </div>
         <div className="flex justify-between">
           <span className="text-gray-400">solved:</span>
-          <span className="text-gray-300">{solved}</span>
+          <AnimatedValue value={solved} inView={isInView} />
         </div>
         <div className="flex justify-between">
           <span className="text-gray-400">rank:</span>
-          <span className="text-gray-300">{rank}</span>
+          <AnimatedValue value={rank} inView={isInView} />
         </div>
       </div>
     </motion.div>

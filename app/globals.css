@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --terminal-glow: #00FF41;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;

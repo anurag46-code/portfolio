@@ -25,7 +25,13 @@ export default function TimelineItem({
   return (
     <motion.div variants={staggerItem} className="mb-6">
       {/* Terminal window container */}
-      <div className="border border-terminal-border rounded-lg bg-terminal-bg/50 overflow-hidden shadow-terminal-glow">
+      <motion.div
+        className="border border-terminal-border rounded-lg bg-terminal-bg/50 overflow-hidden shadow-terminal-glow transition-all duration-300"
+        whileHover={{
+          borderColor: "rgba(0, 255, 65, 0.5)",
+          boxShadow: "0 0 10px rgba(0, 255, 65, 0.3), 0 0 20px rgba(0, 255, 65, 0.1)",
+        }}
+      >
         {/* Terminal header with macOS dots */}
         <div className="bg-terminal-bg/80 border-b border-terminal-border px-4 py-2.5 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -113,7 +119,7 @@ export default function TimelineItem({
             ))}
           </ul>
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 }

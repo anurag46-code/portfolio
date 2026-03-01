@@ -8,14 +8,15 @@ import Section from "@/app/components/layout/Section";
 import FormField from "@/app/components/ui/FormField";
 import TerminalButton from "@/app/components/ui/TerminalButton";
 import SocialLink from "@/app/components/ui/SocialLink";
+import { useToast, ToastContainer } from "@/app/components/ui/Toast";
 import { portfolioData } from "@/app/data/portfolio-data";
 import { getSocialIcon } from "@/app/lib/icon-mappings";
 
-type FormStatus = "idle" | "loading" | "success" | "error";
+type FormStatus = "idle" | "loading";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<FormStatus>("idle");
-  const [errorMessage, setErrorMessage] = useState("");
+  const { toasts, addToast, removeToast } = useToast();
 
   const {
     register,
@@ -28,7 +29,6 @@ export default function ContactForm() {
 
   const onSubmit = async (data: ContactFormData) => {
     setStatus("loading");
-    setErrorMessage("");
 
     try {
       const response = await fetch("/api/send-email", {
@@ -43,14 +43,14 @@ export default function ContactForm() {
         throw new Error(result.error || "Failed to send message");
       }
 
-      setStatus("success");
+      setStatus("idle");
       reset();
-      setTimeout(() => setStatus("idle"), 5000);
+      addToast("Message sent successfully!", "success");
     } catch (err) {
       const message =
         err instanceof Error ? err.message : "An unexpected error occurred";
-      setErrorMessage(message);
-      setStatus("error");
+      setStatus("idle");
+      addToast(`Error: ${message}`, "error");
     }
   };
 
@@ -85,23 +85,9 @@ export default function ContactForm() {
             {...register("message")}
           />
 
-          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-            <TerminalButton type="submit" loading={status === "loading"}>
-              ./send-message.sh
-            </TerminalButton>
-
-            {status === "success" && (
-              <p className="text-terminal-glow text-sm font-mono glow-text" role="status">
-                Message sent successfully!
-              </p>
-            )}
-
-            {status === "error" && (
-              <p className="text-red-400 text-sm font-mono" role="alert">
-                Error: {errorMessage}
-              </p>
-            )}
-          </div>
+          <TerminalButton type="submit" loading={status === "loading"}>
+            ./send-message.sh
+          </TerminalButton>
         </form>
 
         {/* Social Links */}
@@ -127,6 +113,8 @@ export default function ContactForm() {
           </div>
         </div>
       </div>
+
+      <ToastContainer toasts={toasts} onRemove={removeToast} />
     </Section>
   );
 }

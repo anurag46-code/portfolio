@@ -85,18 +85,165 @@
   animation: fade-in-up 0.5s ease-out forwards;
 }
 
+/* Glitch Effect */
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-3px, 2px);
+  }
+  40% {
+    transform: translate(2px, -2px);
+  }
+  60% {
+    transform: translate(-2px, 1px);
+  }
+  80% {
+    transform: translate(3px, -1px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes glitch-channel-r {
+  0% {
+    clip-path: inset(40% 0 20% 0);
+    transform: translate(-3px, 0);
+  }
+  25% {
+    clip-path: inset(10% 0 60% 0);
+    transform: translate(3px, 0);
+  }
+  50% {
+    clip-path: inset(70% 0 5% 0);
+    transform: translate(-2px, 0);
+  }
+  75% {
+    clip-path: inset(20% 0 50% 0);
+    transform: translate(2px, 0);
+  }
+  100% {
+    clip-path: inset(50% 0 10% 0);
+    transform: translate(-3px, 0);
+  }
+}
+
+@keyframes glitch-channel-b {
+  0% {
+    clip-path: inset(60% 0 5% 0);
+    transform: translate(3px, 0);
+  }
+  25% {
+    clip-path: inset(5% 0 70% 0);
+    transform: translate(-3px, 0);
+  }
+  50% {
+    clip-path: inset(30% 0 30% 0);
+    transform: translate(2px, 0);
+  }
+  75% {
+    clip-path: inset(65% 0 10% 0);
+    transform: translate(-2px, 0);
+  }
+  100% {
+    clip-path: inset(15% 0 55% 0);
+    transform: translate(3px, 0);
+  }
+}
+
+.hero-name-glitch {
+  position: relative;
+  display: inline-block;
+}
+
+.hero-name-glitch.glitching {
+  animation: glitch 200ms linear;
+}
+
+.hero-name-glitch::before,
+.hero-name-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hero-name-glitch.glitching::before {
+  color: #ff0040;
+  opacity: 0.7;
+  animation: glitch-channel-r 200ms linear;
+  text-shadow: none;
+}
+
+.hero-name-glitch.glitching::after {
+  color: #0040ff;
+  opacity: 0.7;
+  animation: glitch-channel-b 200ms linear;
+  text-shadow: none;
+}
+
+/* Neon Border Draw Animation */
+@keyframes draw-border {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-draw-border {
+  animation: draw-border 0.8s ease-out forwards;
+}
+
+/* Corner Glow Pulse Animation */
+@keyframes corner-glow {
+  0% {
+    opacity: 0.5;
+    filter: drop-shadow(0 0 2px #00FF00);
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 6px #00FF00) drop-shadow(0 0 10px #00FF0088);
+  }
+  100% {
+    opacity: 0.5;
+    filter: drop-shadow(0 0 2px #00FF00);
+  }
+}
+
+.animate-corner-glow {
+  animation: corner-glow 1.6s ease-in-out infinite;
+}
+
 /* Reduce motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
   .animate-scanline-move,
   .animate-cursor-blink,
   .animate-text-flicker,
   .animate-glow-pulse,
-  .animate-fade-in-up {
+  .animate-fade-in-up,
+  .animate-draw-border,
+  .animate-corner-glow {
     animation: none;
   }
 
   .animate-fade-in-up {
     opacity: 1;
     transform: none;
+  }
+
+  .hero-name-glitch.glitching,
+  .hero-name-glitch.glitching::before,
+  .hero-name-glitch.glitching::after {
+    animation: none;
+    opacity: 0;
+  }
+
+  .hero-name-glitch.glitching {
+    opacity: 1;
   }
 }

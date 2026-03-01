@@ -11,7 +11,7 @@ const config: Config = {
       colors: {
         "terminal-bg": "#000000",
         "terminal-text": "#00FF00",
-        "terminal-glow": "#00FF41",
+        "terminal-glow": "var(--terminal-glow, #00FF41)",
         "terminal-dim": "#00802080",
         "terminal-border": "#00FF0033",
         "terminal-amber": "#FFB000",
@@ -35,6 +35,7 @@ const config: Config = {
         blink: "blink 1s step-end infinite",
         "cursor-blink": "blink 0.8s step-end infinite",
         flicker: "flicker 0.15s infinite",
+        "cursor-trail-fade": "cursor-trail-fade 0.3s ease-out forwards",
       },
       keyframes: {
         scanline: {
@@ -49,6 +50,10 @@ const config: Config = {
           "0%": { opacity: "0.97" },
           "50%": { opacity: "1" },
           "100%": { opacity: "0.98" },
+        },
+        "cursor-trail-fade": {
+          "0%": { opacity: "0.8", transform: "scale(1)" },
+          "100%": { opacity: "0", transform: "scale(0.3)" },
         },
       },
     },
