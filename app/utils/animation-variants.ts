@@ -73,6 +73,15 @@ export const terminalReveal: Variants = {
   },
 };
 
+export const headingFadeInUp: Variants = {
+  hidden: { opacity: 0, y: 12 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.25, ease: "easeOut" },
+  },
+};
+
 export const glowPulse: Variants = {
   idle: { filter: "brightness(1)" },
   glow: {

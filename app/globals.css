@@ -101,4 +101,27 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  /* Hide scrollbar for horizontal scroll spy tabs */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Touch device optimizations for boot sequence readability */
+@media (pointer: coarse) {
+  .boot-terminal-content {
+    font-size: 0.875rem; /* 14px - bump from text-xs (12px) on touch devices */
+    line-height: 1.5;
+    padding: 1rem;
+  }
+
+  .boot-terminal-content .terminal-prompt-input {
+    font-size: 0.875rem;
+  }
 }

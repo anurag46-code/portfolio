@@ -68,6 +68,21 @@ export interface TechStack {
   tools: string[];
 }
 
+export interface Project {
+  /** Project title */
+  title: string;
+  /** Short description of the project */
+  description: string;
+  /** Technologies used */
+  techStack: string[];
+  /** GitHub repository URL */
+  githubUrl?: string;
+  /** Live demo URL */
+  liveUrl?: string;
+  /** Key highlights shown on card back */
+  highlights?: string[];
+}
+
 export interface ContactInfo {
   /** Your contact email address */
   email: string;
@@ -81,6 +96,7 @@ export interface PortfolioData {
   hero: HeroData;
   cpStats: CpStat[];
   dsaSkills: DsaSkillCategory[];
+  projects: Project[];
   experience: Experience[];
   techStack: TechStack;
   contact: ContactInfo;
@@ -148,6 +164,53 @@ export const portfolioData: PortfolioData = {
     {
       category: "Core Concepts",
       skills: ["OOP", "DBMS", "Operating Systems", "Computer Networks"],
+    },
+  ],
+
+  // ---------------------------------------------------------------------------
+  // Projects
+  // Showcased in the Projects section with flip cards. Add or remove entries.
+  // Set to an empty array [] if you prefer not to list projects.
+  // ---------------------------------------------------------------------------
+  projects: [
+    {
+      title: "Cloud Cost Dashboard",
+      description:
+        "Real-time AWS cost visualization dashboard with anomaly detection and budget alerts for multi-account environments.",
+      techStack: ["React.js", "Python", "AWS", "Terraform"],
+      githubUrl: "https://github.com/anurag46-code",
+      liveUrl: "",
+      highlights: [
+        "Aggregates cost data across 50+ AWS accounts",
+        "Anomaly detection using statistical thresholds",
+        "Automated Slack/email budget alerts",
+      ],
+    },
+    {
+      title: "CP Problem Tracker",
+      description:
+        "Full-stack application to track competitive programming progress across multiple platforms with analytics.",
+      techStack: ["Node.js", "MongoDB", "Express.js", "React.js"],
+      githubUrl: "https://github.com/anurag46-code",
+      liveUrl: "",
+      highlights: [
+        "Syncs ratings from Codeforces, LeetCode, CodeChef",
+        "Topic-wise solve analytics and heatmaps",
+        "Spaced-repetition review reminders",
+      ],
+    },
+    {
+      title: "Terminal Portfolio",
+      description:
+        "This retro terminal-themed developer portfolio built with Next.js, featuring CRT effects and smooth animations.",
+      techStack: ["Next.js", "Tailwind CSS", "Framer Motion", "TypeScript"],
+      githubUrl: "https://github.com/anurag46-code",
+      liveUrl: "",
+      highlights: [
+        "CRT scanline and glow effects",
+        "3D tilt cards and flip animations",
+        "Fully responsive terminal aesthetic",
+      ],
     },
   ],
 

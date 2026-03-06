@@ -162,7 +162,7 @@ function TerminalPrompt({ scrollTo }: { scrollTo: (id: string) => void }) {
   return (
     <div
       ref={containerRef}
-      className="mt-4 max-h-48 overflow-y-auto font-mono text-sm"
+      className="terminal-prompt-input mt-4 max-h-48 overflow-y-auto font-mono text-sm"
       onClick={() => inputRef.current?.focus()}
     >
       {/* Previous command outputs */}
@@ -260,7 +260,7 @@ export default function Hero() {
   }, [bootComplete]);
 
   return (
-    <section id="about" className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
+    <section id="about" className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden scroll-mt-28">
       {/* Particle system */}
       <ParticleSystem />
 
@@ -336,7 +336,7 @@ export default function Hero() {
           </div>
 
           {/* Terminal content */}
-          <div className="bg-terminal-bg/50 p-6 font-mono text-xs sm:text-sm">
+          <div className="boot-terminal-content bg-terminal-bg/50 p-6 font-mono text-xs sm:text-sm">
             {bootLines.map((line, i) => (
               <motion.div
                 key={i}

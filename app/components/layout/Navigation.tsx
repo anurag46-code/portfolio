@@ -6,6 +6,7 @@ import { useSmoothScroll } from "@/app/hooks/useSmoothScroll";
 const SECTIONS = [
   { name: "about", id: "about" },
   { name: "cp-stats", id: "cp-stats" },
+  { name: "projects", id: "projects" },
   { name: "experience", id: "experience" },
   { name: "stack", id: "tech-stack" },
   { name: "contact", id: "contact" },
